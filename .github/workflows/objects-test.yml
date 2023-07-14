@@ -4,7 +4,7 @@ jobs:
   get-stuff:
     runs-on: ubuntu-latest
     outputs:
-      my-info: ${{ steps.outputs.copy_id.value }}
+      myinfo: ${{ steps.copy_id.outputs.value }}
     steps:
       - name: print output
         id: copy_id
@@ -14,4 +14,4 @@ jobs:
     needs: get-stuff
     steps:
       - name: echo putput
-        run: echo "${{ needs.get-stuff.outputs.my-info }}"
+        run: echo "${{ needs.get-stuff.outputs.myinfo }}"

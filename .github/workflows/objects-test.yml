@@ -1,0 +1,17 @@
+name: objects test
+on: push
+jobs:
+  get-stuff:
+    runs-on: ubuntu-latest
+    outputs:
+      my-info: ${{ steps.outputs.copy_id.value }}
+    steps:
+      - name: print output
+        id: copy_id
+        run: echo "value=hallo" >> "$GITHUB_OUTPUT"
+  output:
+    runs-on: ubuntu-latest
+    needs: get-stuff
+    steps:
+      - name: echo putput
+        run: echo "${{ needs.get-stuff.outputs.my-info }}"
